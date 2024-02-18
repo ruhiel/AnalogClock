@@ -8,24 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\AClock1-1_45.png" />
-    <None Remove="Resources\AClock1-2_45.png" />
-    <None Remove="Resources\AClock1-3_45.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\AClock1-1_45.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\AClock1-2_45.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\AClock1-3_45.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.4.1" />
     <PackageReference Include="ReactiveProperty.WPF" Version="9.4.0" />
   </ItemGroup>

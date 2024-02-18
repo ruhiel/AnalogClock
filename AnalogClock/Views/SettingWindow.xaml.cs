@@ -17,9 +17,9 @@ namespace AnalogClock.Views
     /// <summary>
     /// SettingWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class ColorPickerWindow : Window
+    public partial class SettingWindow : Window
     {
-        public ColorPickerWindow()
+        public SettingWindow()
         {
             InitializeComponent();
         }

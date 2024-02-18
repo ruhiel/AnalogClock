@@ -18,8 +18,13 @@ namespace AnalogClock.ViewModels
         public ReactiveCommand<EventArgs> ExitCommand { get; } = new ReactiveCommand<EventArgs>();
         public ReactiveProperty<ImageSource> Source { get; } = new ReactiveProperty<ImageSource>();
         public ReactiveProperty<Brush> ClockTextForeground { get; } = new ReactiveProperty<Brush>();
+        public ReactiveProperty<Brush> SecondLineColor { get; } = new ReactiveProperty<Brush>();
+        public ReactiveProperty<Brush> MinuteLineColor { get; } = new ReactiveProperty<Brush>();
+        public ReactiveProperty<Brush> HourLineColor { get; } = new ReactiveProperty<Brush>();
         public ReactiveCommand<DragEventArgs> DropCommand { get; } = new ReactiveCommand<DragEventArgs>();
         public ReactiveCommand<DragEventArgs> PreviewDragOverCommand { get; } = new ReactiveCommand<DragEventArgs>();
+        public ReactiveProperty<double> NowWidth { get; } = new ReactiveProperty<double>(500);
+        public ReactiveProperty<double> NowHeight { get; } = new ReactiveProperty<double>(500);
 
         public MainWindowViewModels()
         {
@@ -33,38 +38,51 @@ namespace AnalogClock.ViewModels
             var blue = Properties.Settings.Default.ClockTextForeground_B;
             ClockTextForeground.Value = new SolidColorBrush(Color.FromRgb((byte)(255 * red), (byte)(255 * green), (byte)(255 * blue)));
 
+            red = Properties.Settings.Default.SecondLine_R;
+            green = Properties.Settings.Default.SecondLine_G;
+            blue = Properties.Settings.Default.SecondLine_B;
+            SecondLineColor.Value = new SolidColorBrush(Color.FromRgb((byte)(255 * red), (byte)(255 * green), (byte)(255 * blue)));
+
+            red = Properties.Settings.Default.MinuteLine_R;
+            green = Properties.Settings.Default.MinuteLine_G;
+            blue = Properties.Settings.Default.MinuteLine_B;
+            MinuteLineColor.Value = new SolidColorBrush(Color.FromRgb((byte)(255 * red), (byte)(255 * green), (byte)(255 * blue)));
+
+            red = Properties.Settings.Default.HourLine_R;
+            green = Properties.Settings.Default.HourLine_G;
+            blue = Properties.Settings.Default.HourLine_B;
+            HourLineColor.Value = new SolidColorBrush(Color.FromRgb((byte)(255 * red), (byte)(255 * green), (byte)(255 * blue)));
+
             SettingCommand.Subscribe(x =>
             {
                 var dialog = new SettingWindow();
 
-                var red = Properties.Settings.Default.ClockTextForeground_R;
-                var green = Properties.Settings.Default.ClockTextForeground_G;
-                var blue = Properties.Settings.Default.ClockTextForeground_B;
-
-                var vm = dialog.DataContext as ColorPickerViewModel;
-
-                if (vm == null)
-                {
-                    return;
-                }
-
-                var color = new ColorPicker.Models.ColorState();
-                color.SetARGB(0, red, green, blue);
-
-                vm.ColorState.Value = color;
-
                 dialog.ShowDialog();
+
+                var vm = dialog.DataContext as SettingWindowViewModel;
 
                 if (vm.Result == false)
                 {
                     return;
                 }
 
-                ClockTextForeground.Value = vm.SolidColorBrush.Value ?? new SolidColorBrush();
+                ClockTextForeground.Value = vm.TextSolidColorBrush.Value ?? new SolidColorBrush();
+                SecondLineColor.Value = vm.SecondLineColorBrush.Value ?? new SolidColorBrush();
+                MinuteLineColor.Value = vm.MinuteLineColorBrush.Value ?? new SolidColorBrush();
+                HourLineColor.Value = vm.HourLineColorBrush.Value ?? new SolidColorBrush();
 
-                Properties.Settings.Default.ClockTextForeground_R = vm.ColorState.Value.RGB_R;
-                Properties.Settings.Default.ClockTextForeground_G = vm.ColorState.Value.RGB_G;
-                Properties.Settings.Default.ClockTextForeground_B = vm.ColorState.Value.RGB_B;
+                Properties.Settings.Default.ClockTextForeground_R = vm.TextColorState.Value.RGB_R;
+                Properties.Settings.Default.ClockTextForeground_G = vm.TextColorState.Value.RGB_G;
+                Properties.Settings.Default.ClockTextForeground_B = vm.TextColorState.Value.RGB_B;
+                Properties.Settings.Default.SecondLine_R = vm.SecondLineColorState.Value.RGB_R;
+                Properties.Settings.Default.SecondLine_G = vm.SecondLineColorState.Value.RGB_G;
+                Properties.Settings.Default.SecondLine_B = vm.SecondLineColorState.Value.RGB_B;
+                Properties.Settings.Default.MinuteLine_R = vm.MinuteLineColorState.Value.RGB_R;
+                Properties.Settings.Default.MinuteLine_G = vm.MinuteLineColorState.Value.RGB_G;
+                Properties.Settings.Default.MinuteLine_B = vm.MinuteLineColorState.Value.RGB_B;
+                Properties.Settings.Default.HourLine_R = vm.HourLineColorState.Value.RGB_R;
+                Properties.Settings.Default.HourLine_G = vm.HourLineColorState.Value.RGB_G;
+                Properties.Settings.Default.HourLine_B = vm.HourLineColorState.Value.RGB_B;
                 Properties.Settings.Default.Save();
             });
 

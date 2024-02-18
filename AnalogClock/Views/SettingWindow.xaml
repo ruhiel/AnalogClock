@@ -1,0 +1,43 @@
+﻿<Window x:Class="AnalogClock.Views.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnalogClock.Views"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:AnalogClock.ViewModels"
+        Title="SettingWindow" Height="150" Width="400">
+    <Window.DataContext>
+        <vm:SettingWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="長針：" VerticalAlignment="Center"/>
+                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding HourLineSettingCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="短針：" VerticalAlignment="Center"/>
+                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding MinuteLineSettingCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="秒針：" VerticalAlignment="Center"/>
+                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding SecondLineSettingCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="文字：" VerticalAlignment="Center"/>
+                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding TextSettingCommand}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="100" Content="OK" Command="{Binding CloseWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Margin="5"/>
+                <Button Width="100" Content="キャンセル" Command="{Binding CloseWindowCancel}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Margin="5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

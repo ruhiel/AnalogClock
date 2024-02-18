@@ -70,5 +70,113 @@ namespace AnalogClock.Properties {
                 this["ClockTextForeground_B"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double SecondLine_R {
+            get {
+                return ((double)(this["SecondLine_R"]));
+            }
+            set {
+                this["SecondLine_R"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double SecondLine_G {
+            get {
+                return ((double)(this["SecondLine_G"]));
+            }
+            set {
+                this["SecondLine_G"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double SecondLine_B {
+            get {
+                return ((double)(this["SecondLine_B"]));
+            }
+            set {
+                this["SecondLine_B"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MinuteLine_R {
+            get {
+                return ((double)(this["MinuteLine_R"]));
+            }
+            set {
+                this["MinuteLine_R"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MinuteLine_G {
+            get {
+                return ((double)(this["MinuteLine_G"]));
+            }
+            set {
+                this["MinuteLine_G"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MinuteLine_B {
+            get {
+                return ((double)(this["MinuteLine_B"]));
+            }
+            set {
+                this["MinuteLine_B"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double HourLine_R {
+            get {
+                return ((double)(this["HourLine_R"]));
+            }
+            set {
+                this["HourLine_R"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double HourLine_G {
+            get {
+                return ((double)(this["HourLine_G"]));
+            }
+            set {
+                this["HourLine_G"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double HourLine_B {
+            get {
+                return ((double)(this["HourLine_B"]));
+            }
+            set {
+                this["HourLine_B"] = value;
+            }
+        }
     }
 }

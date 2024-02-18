@@ -15,7 +15,6 @@ namespace AnalogClock.ViewModels
     {
         public bool Result { get; private set; }
         public ReactiveProperty<ColorState> ColorState { get; set; } = new ReactiveProperty<ColorState>();
-        public ReadOnlyReactiveProperty<SolidColorBrush?> SolidColorBrush { get; set; }
         public ReactiveCommand CloseWindow { get; } = new ReactiveCommand();
         public ReactiveCommand CloseWindowCancel { get; } = new ReactiveCommand();
 
@@ -34,15 +33,6 @@ namespace AnalogClock.ViewModels
 
                 Result = false;
             });
-
-            SolidColorBrush = ColorState.Select(x =>
-            {
-                var red = 255 * x.RGB_R;
-                var green = 255 * x.RGB_G;
-                var blue = 255 * x.RGB_B;
-
-                return new SolidColorBrush(Color.FromRgb((byte)red, (byte)green, (byte)blue));
-            }).ToReadOnlyReactiveProperty();
         }
     }
 }

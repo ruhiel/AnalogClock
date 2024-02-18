@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:AnalogClock.ViewModels"
         xmlns:conv="clr-namespace:AnalogClock.Converter"
         xmlns:rp="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.WPF"
-        Title="MainWindow" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Loaded="Window_Loaded" AllowDrop="True">
+        Title="MainWindow" AllowsTransparency="True" Width="{Binding NowWidth.Value, Mode=TwoWay}" Height="{Binding NowHeight.Value, Mode=TwoWay}" WindowStyle="None" Background="Transparent" Loaded="Window_Loaded" AllowDrop="True" ResizeMode="CanResizeWithGrip">
     <Window.DataContext>
         <vm:MainWindowViewModels/>
     </Window.DataContext>
@@ -71,22 +71,31 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
-        <Image Source="{Binding Source.Value}" Width="500" Height="500" AllowDrop="True"/>
-        <Image RenderTransformOrigin="0.5,0.5" x:Name="HourLine" Source="/Resources/AClock1-2_45.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
-            <Image.RenderTransform>
-                <RotateTransform x:Name="AngleHour" Angle="0"/>
-            </Image.RenderTransform>
-        </Image>
-        <Image RenderTransformOrigin="0.5,0.5" x:Name="MinuteLine" Source="/Resources/AClock1-1_45.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
-            <Image.RenderTransform>
-                <RotateTransform x:Name="AngleMinute" Angle="0"/>
-            </Image.RenderTransform>
-        </Image>
-        <Image RenderTransformOrigin="0.5,0.5" x:Name="SecondLine" Source="/Resources/AClock1-3_45.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
-            <Image.RenderTransform>
+        <Image Width="{Binding NowWidth.Value}" Height="{Binding NowHeight.Value}" Source="{Binding Source.Value}" AllowDrop="True"/>
+        <Path Stroke="{Binding SecondLineColor.Value}" RenderTransformOrigin="0.5,0.5" x:Name="SecondLine" StrokeThickness="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
+            <Path.Data>
+                <LineGeometry StartPoint="140,143" EndPoint="253,30"/>
+            </Path.Data>
+            <Path.RenderTransform>
                 <RotateTransform x:Name="AngleSecond" Angle="0"/>
-            </Image.RenderTransform>
-        </Image>
+            </Path.RenderTransform>
+        </Path>
+        <Path Stroke="{Binding MinuteLineColor.Value}" RenderTransformOrigin="0.5,0.5" x:Name="MinuteLine" StrokeThickness="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
+            <Path.Data>
+                <LineGeometry StartPoint="140,143" EndPoint="253,30"/>
+            </Path.Data>
+            <Path.RenderTransform>
+                <RotateTransform x:Name="AngleMinute" Angle="0"/>
+            </Path.RenderTransform>
+        </Path>
+        <Path Stroke="{Binding HourLineColor.Value}" RenderTransformOrigin="0.5,0.5" x:Name="HourLine" StrokeThickness="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
+            <Path.Data>
+                <LineGeometry StartPoint="140,143" EndPoint="230,53"/>
+            </Path.Data>
+            <Path.RenderTransform>
+                <RotateTransform x:Name="AngleHour" Angle="0"/>
+            </Path.RenderTransform>
+        </Path>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <TextBlock x:Name="textBlock" Text="00:00" FontSize="50" Foreground="{Binding ClockTextForeground.Value}"/>
         </StackPanel>
