@@ -24,6 +24,16 @@
 
     <Window.ContextMenu>
         <ContextMenu>
+            <MenuItem Header="設定">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <!-- set the command, called after the converter -->
+                        <rp:EventToReactiveCommand Command="{Binding SettingCommand, Mode=OneWay}">
+                            <conv:EventArgsConverter/>
+                        </rp:EventToReactiveCommand>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </MenuItem>
             <MenuItem Header="最前面に固定" IsChecked="False" IsCheckable="True" Checked="fixedFront_Checked" Unchecked="fixedFront_Unchecked"/>
             <MenuItem Header="終了">
                 <i:Interaction.Triggers>
@@ -77,5 +87,8 @@
                 <RotateTransform x:Name="AngleSecond" Angle="0"/>
             </Image.RenderTransform>
         </Image>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <TextBlock x:Name="textBlock" Text="00:00" FontSize="50" Foreground="{Binding ClockTextForeground.Value}"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace AnalogClock
 {
@@ -22,6 +23,11 @@ namespace AnalogClock
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 時刻表示用タイマー
+        /// </summary>
+        private DispatcherTimer timer;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +37,11 @@ namespace AnalogClock
             this.SizeToContent = SizeToContent.WidthAndHeight;
 
             MouseLeftButtonDown += (o, e) => DragMove();
+
+            // タイマー生成
+            timer = CreateTimer();
+
+            timer.Start();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -66,6 +77,31 @@ namespace AnalogClock
         private void fixedFront_Unchecked(object s, RoutedEventArgs e)
         {
             this.Topmost = false;
+        }
+
+        /// <summary>
+        /// タイマー生成処理
+        /// </summary>
+        /// <returns>生成したタイマー</returns>
+        private DispatcherTimer CreateTimer()
+        {
+            // タイマー生成（優先度はアイドル時に設定）
+            var t = new DispatcherTimer(DispatcherPriority.SystemIdle);
+
+            // タイマーイベントの発生間隔を300ミリ秒に設定
+            t.Interval = TimeSpan.FromMilliseconds(300);
+
+
+
+            // タイマーイベントの定義
+            t.Tick += (sender, e) =>
+            {
+                // 現在の時分秒をテキストに設定
+                textBlock.Text = DateTime.Now.ToString("HH:mm");
+            };
+
+            // 生成したタイマーを返す
+            return t;
         }
     }
 }
