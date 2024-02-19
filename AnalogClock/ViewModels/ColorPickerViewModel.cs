@@ -1,13 +1,7 @@
-﻿using AnalogClock.Properties;
-using ColorPicker.Models;
+﻿using ColorPicker.Models;
 using Reactive.Bindings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace AnalogClock.ViewModels
 {

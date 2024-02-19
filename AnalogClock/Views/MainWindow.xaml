@@ -9,7 +9,8 @@
         xmlns:vm="clr-namespace:AnalogClock.ViewModels"
         xmlns:conv="clr-namespace:AnalogClock.Converter"
         xmlns:rp="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.WPF"
-        Title="MainWindow" AllowsTransparency="True" Width="{Binding NowWidth.Value, Mode=TwoWay}" Height="{Binding NowHeight.Value, Mode=TwoWay}" WindowStyle="None" Background="Transparent" Loaded="Window_Loaded" AllowDrop="True" ResizeMode="CanResizeWithGrip">
+        Title="MainWindow" AllowsTransparency="True" Width="{Binding NowWidth.Value, Mode=TwoWay}" Height="{Binding NowHeight.Value, Mode=TwoWay}" WindowStyle="None" Background="Transparent" Loaded="Window_Loaded" AllowDrop="True" ResizeMode="CanResizeWithGrip"
+        ShowInTaskbar="False">
     <Window.DataContext>
         <vm:MainWindowViewModels/>
     </Window.DataContext>
