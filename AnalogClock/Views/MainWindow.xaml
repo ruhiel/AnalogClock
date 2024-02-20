@@ -73,6 +73,8 @@
     </Window.Resources>
     <Grid>
         <Image Width="{Binding NowWidth.Value}" Height="{Binding NowHeight.Value}" Source="{Binding Source.Value}" AllowDrop="True"/>
+        <Image Width="{Binding NowWidthWatch.Value}" Height="{Binding NowHeightWatch.Value}" Source="/Image/watch4.png" />
+
         <Path Stroke="{Binding SecondLineColor.Value}" RenderTransformOrigin="0.5,0.5" x:Name="SecondLine" StrokeThickness="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="282" Height="282">
             <Path.Data>
                 <LineGeometry StartPoint="140,143" EndPoint="253,30"/>

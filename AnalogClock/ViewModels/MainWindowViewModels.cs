@@ -21,9 +21,16 @@ namespace AnalogClock.ViewModels
         public ReactiveCommand<DragEventArgs> PreviewDragOverCommand { get; } = new ReactiveCommand<DragEventArgs>();
         public ReactiveProperty<double> NowWidth { get; } = new ReactiveProperty<double>(500);
         public ReactiveProperty<double> NowHeight { get; } = new ReactiveProperty<double>(500);
+        public ReadOnlyReactiveProperty<double> NowWidthWatch { get; }
+
+        public ReadOnlyReactiveProperty<double> NowHeightWatch { get; }
 
         public MainWindowViewModels()
         {
+            NowWidthWatch = NowWidth.Select(x => x - 100).ToReadOnlyReactiveProperty();
+
+            NowHeightWatch = NowHeight.Select(x => x - 100).ToReadOnlyReactiveProperty();
+
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PreviousFile))
             {
                 Source.Value = new BitmapImage(new Uri(Properties.Settings.Default.PreviousFile, UriKind.Absolute));

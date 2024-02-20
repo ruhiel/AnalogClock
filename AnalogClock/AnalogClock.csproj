@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <None Remove="Image\image.ico" />
+    <None Remove="Image\watch1.png" />
+    <None Remove="Image\watch2.png" />
+    <None Remove="Image\watch3.png" />
+    <None Remove="Image\watch4.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +23,18 @@
 
   <ItemGroup>
     <Resource Include="Image\image.ico">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\watch1.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\watch2.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\watch3.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\watch4.png">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
