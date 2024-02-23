@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AnalogClock.Views"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:AnalogClock.ViewModels"
-        Title="SettingWindow" Height="150" Width="400">
+        Title="設定画面" Height="180" Width="400">
     <Window.DataContext>
         <vm:SettingWindowViewModel/>
     </Window.DataContext>
@@ -17,21 +17,41 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="3">
                     <TextBlock Text="長針：" VerticalAlignment="Center"/>
-                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding HourLineSettingCommand}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="短針：" VerticalAlignment="Center"/>
                     <Button Content="色設定" VerticalAlignment="Center" Command="{Binding MinuteLineSettingCommand}"/>
+                    <Path Stroke="Black" Fill="{Binding MinuteLineColorBrush.Value}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="10,0,20,20"/>
+                        </Path.Data>
+                    </Path>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="3">
+                    <TextBlock Text="短針：" VerticalAlignment="Center"/>
+                    <Button Content="色設定" VerticalAlignment="Center" Command="{Binding HourLineSettingCommand}"/>
+                    <Path Stroke="Black" Fill="{Binding HourLineColorBrush.Value}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="10,0,20,20"/>
+                        </Path.Data>
+                    </Path>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="3">
                     <TextBlock Text="秒針：" VerticalAlignment="Center"/>
                     <Button Content="色設定" VerticalAlignment="Center" Command="{Binding SecondLineSettingCommand}"/>
+                    <Path Stroke="Black" Fill="{Binding SecondLineColorBrush.Value}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="10,0,20,20"/>
+                        </Path.Data>
+                    </Path>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="3">
                     <TextBlock Text="文字：" VerticalAlignment="Center"/>
                     <Button Content="色設定" VerticalAlignment="Center" Command="{Binding TextSettingCommand}"/>
+                    <Path Stroke="Black" Fill="{Binding TextSolidColorBrush.Value}">
+                        <Path.Data>
+                            <RectangleGeometry Rect="10,0,20,20"/>
+                        </Path.Data>
+                    </Path>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
