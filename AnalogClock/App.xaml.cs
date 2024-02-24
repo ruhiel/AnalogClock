@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -10,11 +12,27 @@ namespace AnalogClock
     /// </summary>
     public partial class App : System.Windows.Application
     {
+        private Mutex? _Mutex;
         private MainWindow? _Window = null;  //２重起動防止用
         //常駐終了時に開放するために保存しておく
         private ContextMenuStrip? _Menu = null;
         //常駐終了時に開放するために保存しておく
         private NotifyIcon? _NotifyIcon = null;
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            if (_Mutex == null)
+            {
+                return;
+            }
+
+            // ミューテックスの開放
+            _Mutex.ReleaseMutex();
+            _Mutex.Close();
+            _Mutex = null;
+        }
 
         /// <summary>
         /// 常駐開始時の初期化処理
@@ -22,6 +40,40 @@ namespace AnalogClock
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
+            var hasHandle = false;
+
+            // 初期所有権なしでMutexを生成
+            // Mutex名を固有にするためGUIDを使用する
+            // GUIDはVisual studio > [ツール] > [GUIDの生成]から生成
+            _Mutex = new Mutex(false, "{46DD35B8-506A-421F-BBF0-E464BC2DC944}");
+
+            //---------------------------------------------------------
+            // 二重起動のチェック
+            //---------------------------------------------------------
+            try
+            {
+                // Mutexの所有権を要求
+                hasHandle = _Mutex.WaitOne(0, false);
+            }
+            catch (AbandonedMutexException)
+            {
+                // 別アプリがMutexオブジェクトを開放しないで終了した場合
+                hasHandle = true;
+            }
+
+            if (hasHandle == false)
+            {
+                // 所有権が得られなかった場合、起動済みと判断して終了
+                System.Windows.MessageBox.Show("二重起動のため、プログラムを終了します");
+                _Mutex.Close();
+                _Mutex = null;
+                Shutdown();
+                return;
+            }
+
+            //---------------------------------------------------------
+            // アプリケーション開始
+            //---------------------------------------------------------
             //継承元のOnStartupを呼び出す
             base.OnStartup(e);
 

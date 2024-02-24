@@ -17,11 +17,12 @@ namespace AnalogClock
 
         public MainWindow()
         {
+            Topmost = Properties.Settings.Default.TopMost;
             InitializeComponent();
             InitializeAngle(-45);
 
             //コンテンツに合わせて自動的にサイズを設定
-            this.SizeToContent = SizeToContent.WidthAndHeight;
+            SizeToContent = SizeToContent.WidthAndHeight;
 
             MouseLeftButtonDown += (o, e) => DragMove();
 
@@ -32,22 +33,22 @@ namespace AnalogClock
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            StartAnimation("HourHand", this.AngleHour.Angle);
-            StartAnimation("MinuteHand", this.AngleMinute.Angle);
-            StartAnimation("SecondHand", this.AngleSecond.Angle);
+            StartAnimation("HourHand", AngleHour.Angle);
+            StartAnimation("MinuteHand", AngleMinute.Angle);
+            StartAnimation("SecondHand", AngleSecond.Angle);
         }
 
         void InitializeAngle(int init = 0)
         {
             DateTime dt = DateTime.Now;
-            this.AngleSecond.Angle = dt.Second * 360.0 / 60.0 + init;
-            this.AngleMinute.Angle = (dt.Minute + dt.Second / 60.0) * 360.0 / 60.0 + init;
-            this.AngleHour.Angle = (dt.Hour + dt.Minute / 60.0) * 360.0 / 12 + init;
+            AngleSecond.Angle = dt.Second * 360.0 / 60.0 + init;
+            AngleMinute.Angle = (dt.Minute + dt.Second / 60.0) * 360.0 / 60.0 + init;
+            AngleHour.Angle = (dt.Hour + dt.Minute / 60.0) * 360.0 / 12 + init;
         }
 
         private void StartAnimation(string name, double angle)
         {
-            var sb = this.Resources[name] as Storyboard;
+            var sb = Resources[name] as Storyboard;
             var da = sb.Children[0] as DoubleAnimation;
             da.From = angle;
             da.To = da.From + 360.0;
@@ -57,13 +58,17 @@ namespace AnalogClock
         //チェック時
         private void fixedFront_Checked(object s, RoutedEventArgs e)
         {
-            this.Topmost = true;
+            Topmost = true;
+            Properties.Settings.Default.TopMost = Topmost;
+            Properties.Settings.Default.Save();
         }
 
         //未チェック時
         private void fixedFront_Unchecked(object s, RoutedEventArgs e)
         {
-            this.Topmost = false;
+            Topmost = false;
+            Properties.Settings.Default.TopMost = Topmost;
+            Properties.Settings.Default.Save();
         }
 
         /// <summary>

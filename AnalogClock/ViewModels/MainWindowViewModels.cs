@@ -22,8 +22,8 @@ namespace AnalogClock.ViewModels
         public ReactiveProperty<double> NowWidth { get; } = new ReactiveProperty<double>(500);
         public ReactiveProperty<double> NowHeight { get; } = new ReactiveProperty<double>(500);
         public ReadOnlyReactiveProperty<double> NowWidthWatch { get; }
-
         public ReadOnlyReactiveProperty<double> NowHeightWatch { get; }
+        public ReactiveProperty<bool> TopMost { get; } = new ReactiveProperty<bool>(Properties.Settings.Default.TopMost);
 
         public MainWindowViewModels()
         {
