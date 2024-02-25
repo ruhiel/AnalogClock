@@ -7,16 +7,20 @@
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:AnalogClock.ViewModels"
         xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
-        Title="ColorPickerWindow" Height="450" Width="800">
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        ResizeMode="NoResize"
+        
+        Topmost="True"
+        Title="ColorPickerWindow" Height="500" Width="300">
     <Window.DataContext>
         <vm:ColorPickerViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="9*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <colorpicker:StandardColorPicker  Grid.Row="0" x:Name="main" ColorState="{Binding ColorState.Value, Mode=TwoWay}" />
+        <colorpicker:StandardColorPicker Grid.Row="0" x:Name="main" ColorState="{Binding ColorState.Value, Mode=TwoWay}" ShowAlpha="False"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Content="OK" Command="{Binding CloseWindow}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Margin="5"/>
             <Button Width="100" Content="キャンセル" Command="{Binding CloseWindowCancel}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Margin="5"/>

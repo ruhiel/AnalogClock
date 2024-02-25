@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="3.0.0-alpha0476" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.4.1" />
     <PackageReference Include="ReactiveProperty.WPF" Version="9.4.0" />
   </ItemGroup>
