@@ -1,4 +1,4 @@
-﻿<Window x:Class="AnalogClock.Views.ColorPickerWindow"
+﻿<mah:MetroWindow x:Class="AnalogClock.Views.ColorPickerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,9 +9,9 @@
         xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         ResizeMode="NoResize"
-        
         Topmost="True"
-        Title="ColorPickerWindow" Height="500" Width="300">
+        SaveWindowPosition="True"
+        Title="色設定" Height="500" Width="300">
     <Window.DataContext>
         <vm:ColorPickerViewModel/>
     </Window.DataContext>
@@ -26,4 +26,4 @@
             <Button Width="100" Content="キャンセル" Command="{Binding CloseWindowCancel}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Margin="5"/>
         </StackPanel>
     </Grid>
-</Window>
+</mah:MetroWindow>

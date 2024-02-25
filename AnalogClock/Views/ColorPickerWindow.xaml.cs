@@ -1,12 +1,11 @@
 ﻿using MahApps.Metro.Controls;
-using System.Windows;
 
 namespace AnalogClock.Views
 {
     /// <summary>
     /// SettingWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class ColorPickerWindow : Window
+    public partial class ColorPickerWindow : MetroWindow
     {
         public ColorPickerWindow()
         {
